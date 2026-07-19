@@ -73,7 +73,4 @@
 
 ---
 
-## 📸 Project Screenshots (صور لقطات الشاشة للمشروع)
 
-### ClickUp Workflow Board:
-![ClickUp Task Management](images/clickup_workflow.png)
