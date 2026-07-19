@@ -1,0 +1,78 @@
+table dimcustomer
+	lineageTag: 4b9f4be8-025d-414d-ac78-1844fa544295
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f69fded-af21-47bd-8dba-e6198c7b0c12
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: d47da622-6a9a-4e69-a0c5-fe8440956b76
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessType
+		dataType: string
+		lineageTag: 48024931-9fd9-4046-a6af-46d112e245b8
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CityName
+		dataType: string
+		lineageTag: fba18f6c-3fce-4c86-9eea-6bbbdb681ae1
+		summarizeBy: none
+		sourceColumn: CityName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateCode
+		dataType: string
+		lineageTag: ab71e42a-427a-442b-b7ac-ef2756b13256
+		summarizeBy: none
+		sourceColumn: StateCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateName
+		dataType: string
+		lineageTag: cf24216c-9796-41bf-b94c-1ca6d1410d3d
+		summarizeBy: none
+		sourceColumn: StateName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryName
+		dataType: string
+		lineageTag: b92c3a54-f762-48c3-80db-2ac835b367fd
+		summarizeBy: none
+		sourceColumn: CountryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: c72edefc-4af3-4b79-b54b-d4977cc9226f
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimcustomer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    HeavyPowerNutritionDWH = Source{[Name="HeavyPowerNutritionDWH"]}[Data],
+				    dbo_dimcustomer = HeavyPowerNutritionDWH{[Schema="dbo",Item="dimcustomer"]}[Data]
+				in
+				    dbo_dimcustomer
+

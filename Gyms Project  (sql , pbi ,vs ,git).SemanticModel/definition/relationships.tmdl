@@ -1,0 +1,44 @@
+relationship 9fe35f82-7eb3-4ac7-8c23-e41d7b99998a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: freturns.OrderDate
+	toColumn: LocalDateTable_130f6c82-e1cf-4cf4-bee8-2c7f821df5db.Date
+
+relationship 207bdc43-8238-4e60-8516-f8a73a07b35d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fsales.DueDate
+	toColumn: LocalDateTable_f503a41e-41c7-4f98-a91f-c60f5e86d6cf.Date
+
+relationship 4970107f-ca75-46ee-8d01-3aebce0dd5ba
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fsales.ShipDate
+	toColumn: LocalDateTable_de75f99d-cc05-4c1b-944f-3dbf1078e694.Date
+
+relationship AutoDetected_d8779ab1-62c2-41b6-b488-fc9254c317a2
+	fromColumn: freturns.CustomerKey
+	toColumn: dimcustomer.CustomerKey
+
+relationship AutoDetected_5f3befab-a2de-44e3-b701-22da430f017b
+	fromColumn: fsales.CustomerKey
+	toColumn: dimcustomer.CustomerKey
+
+relationship AutoDetected_33dd2ddb-440c-4c93-9936-ed5e5cc47994
+	fromColumn: freturns.ProductKey
+	toColumn: dimproduct.ProductKey
+
+relationship AutoDetected_6c2bd0fd-755f-4d9c-a27f-6485af46f12f
+	fromColumn: fsales.ProductKey
+	toColumn: dimproduct.ProductKey
+
+relationship 24a33c5d-d062-4e1f-a866-61245915d12d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CALENDER.Date
+	toColumn: LocalDateTable_2d913c8e-1580-4fac-92f1-c7ede5600a57.Date
+
+relationship ca82a929-34b1-8557-2b93-5465e6b0179a
+	fromColumn: freturns.ReturnDate
+	toColumn: CALENDER.Date
+
+relationship 36f2d10e-58b0-bce7-dba6-5c77f70376b5
+	fromColumn: fsales.OrderDate
+	toColumn: CALENDER.Date
+

@@ -1,0 +1,97 @@
+table freturns
+	lineageTag: 16704eb1-7696-46a4-a62b-4e29732fe44f
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9499ac55-5329-4a8d-84d5-93a9e36b36d0
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: 9fe35f82-7eb3-4ac7-8c23-e41d7b99998a
+			defaultHierarchy: LocalDateTable_130f6c82-e1cf-4cf4-bee8-2c7f821df5db.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ReturnDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd20bad2-bc32-46a1-b0df-db4a9b4809ed
+		summarizeBy: none
+		sourceColumn: ReturnDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: 97a4c41a-3787-44c5-bfde-7d67f9223067
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a103994a-9911-49df-b4d1-c19776ed2a73
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 40e6a39b-788b-4d91-8737-b287b2eb4880
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f1d4f32-65e8-4ca7-98ac-3dd821cc633c
+		summarizeBy: sum
+		sourceColumn: ReturnQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		lineageTag: eb55b712-0729-4c96-b01f-636bed54d204
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ReturnAmount
+		dataType: double
+		lineageTag: 10f3ff66-d4ce-429c-a562-bedafb791f40
+		summarizeBy: sum
+		sourceColumn: ReturnAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition freturns = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    HeavyPowerNutritionDWH = Source{[Name="HeavyPowerNutritionDWH"]}[Data],
+				    dbo_freturns = HeavyPowerNutritionDWH{[Schema="dbo",Item="freturns"]}[Data]
+				in
+				    dbo_freturns
+
+	annotation PBI_ResultType = Table
+
