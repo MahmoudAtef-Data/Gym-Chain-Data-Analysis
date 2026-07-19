@@ -20,3 +20,194 @@ table CALCULATIONS
 
 	annotation PBI_ResultType = Table
 
+
+	measure 'Total Revenue' =
+		SUM(fsales[NetSales])
+		formatString: "$#,##0.0"
+	measure 'Total Cost' =
+		SUMX(fsales, fsales[OrderQuantity] * fsales[UnitCost])
+		formatString: "$#,##0.0"
+	measure 'Gross Profit' =
+		[Total Revenue] - [Total Cost]
+		formatString: "$#,##0.0"
+	measure 'Gross Margin %' =
+		DIVIDE([Gross Profit], [Total Revenue])
+		formatString: "0.0%"
+	measure 'Total Units Sold' =
+		SUM(fsales[OrderQuantity])
+		formatString: "#,##0"
+	measure 'Total Orders' =
+		DISTINCTCOUNT(fsales[SalesOrderNumber])
+		formatString: "#,##0"
+	measure 'Average Order Value' =
+		DIVIDE([Total Revenue], [Total Orders])
+		formatString: "$#,##0.0"
+	measure 'Average Unit Price' =
+		DIVIDE([Total Revenue], [Total Units Sold])
+		formatString: "$#,##0.0"
+	measure 'Total Discount' =
+		SUM(fsales[Discount])
+		formatString: "$#,##0.0"
+	measure 'Discount Rate' =
+		DIVIDE([Total Discount], [Total Revenue])
+		formatString: "0.0%"
+	measure 'Net Revenue' =
+		[Total Revenue] - [Total Return Amount]
+		formatString: "$#,##0.0"
+	measure 'Total Returns Qty' =
+		SUM(freturns[ReturnQuantity])
+		formatString: "#,##0"
+	measure 'Total Return Amount' =
+		SUM(freturns[ReturnAmount])
+		formatString: "$#,##0.0"
+	measure '#Orders with Returns' =
+		DISTINCTCOUNT(freturns[SalesOrderNumber])
+		formatString: "#,##0"
+	measure '#Customers with Returns' =
+		DISTINCTCOUNT(freturns[CustomerKey])
+		formatString: "#,##0"
+	measure 'Return Rate' =
+		DIVIDE([Total Returns Qty], [Total Units Sold])
+		formatString: "0.0%"
+	measure 'Return Amount Rate' =
+		DIVIDE([Total Return Amount], [Total Revenue])
+		formatString: "0.0%"
+	measure '% Returns Orders' =
+		DIVIDE([#Orders with Returns], [Total Orders])
+		formatString: "0.0%"
+	measure '% Returns Amount' =
+		DIVIDE([Total Return Amount], [Total Revenue])
+		formatString: "0.0%"
+	measure '#Customers' =
+		DISTINCTCOUNT(dimcustomer[CustomerKey])
+		formatString: "#,##0"
+	measure 'Customers With Orders' =
+		DISTINCTCOUNT(fsales[CustomerKey])
+		formatString: "#,##0"
+	measure '#Customers Without Orders' =
+		[#Customers] - [Customers With Orders]
+		formatString: "#,##0"
+	measure '#No Sales' =
+		COUNTROWS(FILTER(VALUES(dimcustomer[CustomerKey]), [Total Revenue] = 0))
+		formatString: "#,##0"
+	measure 'Order Frequency' =
+		DISTINCTCOUNT(fsales[SalesOrderNumber])
+		formatString: "#,##0"
+	measure 'Customers Active per Year' =
+		[#Customers]
+		formatString: "#,##0"
+	measure 'Profit per Customer' =
+		DIVIDE([Gross Profit], [#Customers])
+		formatString: "$#,##0.0"
+	measure 'Revenue per Customer' =
+		DIVIDE([Total Revenue], [#Customers])
+		formatString: "$#,##0.0"
+	measure 'Cost as % of Revenue' =
+		DIVIDE([Total Cost], [Total Revenue])
+		formatString: "0.0%"
+	measure 'AOV by Product' =
+		[Average Order Value]
+		formatString: "$#,##0.0"
+	measure 'GM % by Product' =
+		[Gross Margin %]
+		formatString: "0.0%"
+	measure 'Revenue YTD' =
+		TOTALYTD([Total Revenue], CALENDER[Date])
+		formatString: "$#,##0.0"
+	measure 'Cost YTD' =
+		TOTALYTD([Total Cost], CALENDER[Date])
+		formatString: "$#,##0.0"
+	measure 'Profit YTD' =
+		TOTALYTD([Gross Profit], CALENDER[Date])
+		formatString: "$#,##0.0"
+	measure 'Revenue MTD' =
+		TOTALMTD([Total Revenue], CALENDER[Date])
+		formatString: "$#,##0.0"
+	measure 'Revenue QTD' =
+		TOTALQTD([Total Revenue], CALENDER[Date])
+		formatString: "$#,##0.0"
+	measure 'Revenue Previous Year' =
+		CALCULATE([Total Revenue], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "$#,##0.0"
+	measure 'Cost Previous Year' =
+		CALCULATE([Total Cost], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "$#,##0.0"
+	measure 'Profit Previous Year' =
+		CALCULATE([Gross Profit], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "$#,##0.0"
+	measure 'Revenue Previous Month' =
+		CALCULATE([Total Revenue], DATEADD(CALENDER[Date], -1, MONTH))
+		formatString: "$#,##0.0"
+	measure 'Cost Previous Month' =
+		CALCULATE([Total Cost], DATEADD(CALENDER[Date], -1, MONTH))
+		formatString: "$#,##0.0"
+	measure 'Profit Previous Month' =
+		CALCULATE([Gross Profit], DATEADD(CALENDER[Date], -1, MONTH))
+		formatString: "$#,##0.0"
+	measure 'Revenue MoM %' =
+		DIVIDE([Total Revenue] - [Revenue Previous Month], [Revenue Previous Month])
+		formatString: "0.0%"
+	measure 'Revenue YoY %' =
+		DIVIDE([Total Revenue] - [Revenue Previous Year], [Revenue Previous Year])
+		formatString: "0.0%"
+	measure 'Revenue Running Total' =
+		CALCULATE([Total Revenue], FILTER(ALL(CALENDER[Date]), CALENDER[Date] <= MAX(CALENDER[Date])))
+		formatString: "$#,##0.0"
+	measure 'Cost Running Total' =
+		CALCULATE([Total Cost], FILTER(ALL(CALENDER[Date]), CALENDER[Date] <= MAX(CALENDER[Date])))
+		formatString: "$#,##0.0"
+	measure 'VAR % Revenue (vs LY)' =
+		DIVIDE([Total Revenue] - [Revenue Previous Year], [Revenue Previous Year])
+		formatString: "0.0%"
+	measure 'VAR % Profit (vs LY)' =
+		DIVIDE([Gross Profit] - [Profit Previous Year], [Profit Previous Year])
+		formatString: "0.0%"
+	measure 'VAR % Cost (vs LY)' =
+		DIVIDE([Total Cost] - [Cost Previous Year], [Cost Previous Year])
+		formatString: "0.0%"
+	measure 'Average Order Value Previous Year' =
+		CALCULATE([Average Order Value], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "$#,##0.0"
+	measure 'VAR AOV (vs LY)' =
+		ABS([Average Order Value] - [Average Order Value Previous Year])
+		formatString: "$#,##0.0"
+	measure 'Customers Previous Year' =
+		CALCULATE([#Customers], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "#,##0"
+	measure 'VAR #Customers (vs LY)' =
+		[#Customers] - [Customers Previous Year]
+		formatString: "#,##0"
+	measure 'Orders Previous Year' =
+		CALCULATE([Total Orders], DATEADD(CALENDER[Date], -1, YEAR))
+		formatString: "#,##0"
+	measure 'VAR #Orders (vs LY)' =
+		[Total Orders] - [Orders Previous Year]
+		formatString: "#,##0"
+	measure 'Top Customers by Revenue' =
+		RANKX(ALL(dimcustomer[Customer]), [Total Revenue],, DESC)
+		formatString: "#,##0"
+	measure 'Top Customers by Profit' =
+		RANKX(ALL(dimcustomer[Customer]), [Gross Profit],, DESC)
+		formatString: "#,##0"
+	measure 'Revenue Trend' =
+		IF(ISBLANK([Revenue Previous Month]), "▬", IF([Total Revenue] > [Revenue Previous Month], "▲", IF([Total Revenue] < [Revenue Previous Month], "▼", "▬")))
+	measure 'Revenue Trend Color' =
+		IF(ISBLANK([Revenue Previous Month]), "#757575", IF([Total Revenue] > [Revenue Previous Month], "#2E7D32", IF([Total Revenue] < [Revenue Previous Month], "#C62828", "#757575")))
+	measure 'Cost Trend' =
+		IF(ISBLANK([Cost Previous Month]), "▬", IF([Total Cost] > [Cost Previous Month], "▲", IF([Total Cost] < [Cost Previous Month], "▼", "▬")))
+	measure 'Cost Trend Color' =
+		IF(ISBLANK([Cost Previous Month]), "#757575", IF([Total Cost] > [Cost Previous Month], "#2E7D32", IF([Total Cost] < [Cost Previous Month], "#C62828", "#757575")))
+	measure 'Profit Trend' =
+		IF(ISBLANK([Profit Previous Month]), "▬", IF([Gross Profit] > [Profit Previous Month], "▲", IF([Gross Profit] < [Profit Previous Month], "▼", "▬")))
+	measure 'Profit Trend Color' =
+		IF(ISBLANK([Profit Previous Month]), "#757575", IF([Gross Profit] > [Profit Previous Month], "#2E7D32", IF([Gross Profit] < [Profit Previous Month], "#C62828", "#757575")))
+	measure 'Gross Margin % Previous Month' =
+		CALCULATE([Gross Margin %], DATEADD(CALENDER[Date], -1, MONTH))
+		formatString: "0.0%"
+	measure 'Gross Margin % Trend' =
+		IF(ISBLANK([Gross Margin % Previous Month]), "▬", IF([Gross Margin %] > [Gross Margin % Previous Month], "▲", IF([Gross Margin %] < [Gross Margin % Previous Month], "▼", "▬")))
+	measure 'Gross Margin % Trend Color' =
+		IF(ISBLANK([Gross Margin % Previous Month]), "#757575", IF([Gross Margin %] > [Gross Margin % Previous Month], "#2E7D32", IF([Gross Margin %] < [Gross Margin % Previous Month], "#C62828", "#757575")))
+
+// Skipped: price-category measures because no price-category column exists on dimproduct or fsales.
+// Skipped: churn measures and true "Order Frequency" distribution measure requiring a customer-level order-count grouping; ask if you want these added.
