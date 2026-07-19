@@ -5,10 +5,7 @@
 ## 📌 Phase 1: Foundation & Project Management (مرحلة التأسيس وإدارة المشروع)
 
 ### 📊 Project Tracking via ClickUp (تتبع وإدارة المهام)
-* تم تخطيط وتقسيم جميع مراحل المشروع (من أول فهم المتطلبات وحتى بناء التقارير) باستخدام منصة **ClickUp** لضمان سير العمل بأسلوب **Agile** احترافي وتتبع الـ **Tasks** والـ **Subtasks** بدقة.
-
-> 📸 **Project Board Blueprint:**
-> ![ClickUp Task Management](https://images2.imgbox.com/71/e6/M6kE15m8_o.png)
+* تم تخطيط وتقسيم جميع مراحل المشروع (من أول فهم المتمتطلبات وحتى بناء التقارير) باستخدام منصة **ClickUp** لضمان سير العمل بأسلوب **Agile** احترافي وتتبع الـ **Tasks** والـ **Subtasks** بدقة.
 
 ### 🎯 Overview (نظرة عامة)
 * **Project Nature:** مشروع متكامل (End-to-End) بيربط بين مهام الـ **Data Engineer** والـ **Data Analyst** لإنشاء بنية تحتية قوية للبيانات.
@@ -57,3 +54,10 @@
 * **Create Calculations using AI in VS:** كتابة وعمل معادلات الـ **DAX** وتظبيط الـ **Measures** والـ **Calculations**.
 * **Visualization:** تصميم الداشبورد والتقارير التفاعلية (**Dashboard**) لعرض المؤشرات بشكل بصري ممتاز.
 * **Document for Power BI Report:** عمل توثيق (**Documentation**) شامل لكل المعادلات والشغل المالي والإداري اللي اتعمل جوه الـ **Power BI**.
+
+---
+
+## 📸 Project Screenshots (صور لقطات الشاشة للمشروع)
+
+### ClickUp Workflow Board:
+<img src="https://images2.imgbox.com/71/e6/M6kE15m8_o.png" width="100%" alt="ClickUp Task Management">
