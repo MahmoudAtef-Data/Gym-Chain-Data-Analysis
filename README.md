@@ -135,13 +135,14 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 #### 1. مشكلة تكرار الخصم في جدول المبيعات (Sales Denormalization):
 * **المشكلة:** عند عمل `Denormalize` لجدول الـ `Sales Header` وجدول `Sales Details`، نلاحظ حدوث مشكلة عند حساب قيمة الـ `Sales Amount`؛ بسبب تكرار الـ `Discount Amount` بنفس القيمة على أكثر من Row لنفس المنتج.
-* **الحل:** للتغلب على هذه المشكلة نقوم بعمل **Allocation** لتوزيع الخصم بشكل صحيح وصحيح على مستوى السطور دون تكرار القيمة الإجمالية.
-
+الحل:** للتغلب على هذه المشكلة نقوم بعمل Relocated
+لتوزيع الخصم بشكل صحيح وصحيح على مستوى السطور دون تكرار القيمة الإجمالية
 ---
 
-#### 📸 كود حل مشكلة الـ Discount Allocation:
-![Discount Allocation SQL Code](images/discount_allocation_code.png)
 
+|Relocated SQL CODE|
+| :---: |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/discount%20precentage%20_%20discount%20value%20_%20%20net%20sales.png) |
 ---
 
 #### 2. التعامل مع جدول التكاليف (Product Cost History):
@@ -150,8 +151,12 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 ---
 
-#### 📸 كود معالجة جدول الـ Product Cost History:
-![Product Cost SQL Code](images/product_cost_code.png)
+
+
+|UnitCost SQL CODE|
+| :---: |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Unit%20Cost.png) |
+---
 
 ---
 
@@ -162,9 +167,10 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 ---
 
-#### 📸 كود إنشاء جداول الـ DWH:
-![DWH Tables Creation Code](images/dwh_tables_creation.png)
 
+|Create DWH SQL CODE|
+| :---: |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/CREATE.png) |
 ---
 
 #### 2. نقل البيانات من الـ SA Views إلى الـ DWH:
@@ -173,20 +179,21 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 ---
 
-#### 📸 كود عملية نقل البيانات للـ DWH:
-![DWH Data Movement Code](images/dwh_data_movement.png)
+
+| SA TO DWH 1 | SA TO DWH 2 | SA TO DWH 3 |
+| :---: | :---: | :---: | :---: |
+| ![SA TO DWH 1](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/SA%20TO%20DWH%201.png) | ![SA TO DWH 2](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/SA%20TO%20DWH%202.png) | ![SA TO DWH 3](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/SA%20TO%20DWH%203.png) 
 
 
 
-### 📝 SQL Work Documentation (توثيق عمليات قواعد البيانات)
 
-* **الخطوة:** تم عمل توثيق (**Documentation**) شامل ومفصل لكل ما تم من عمليات، وخطوات، وكتابة الـ Scripts أثناء مرحلة الـ ETL وبناء الـ Staging Area ومستودع البيانات (DWH) على الـ SQL.
+### 📝 SQL Work Documentation (توثيق عمليات قواعد البيانات)(DWH) على الـ SQL.
 
----
+#### 📸 لقطة شاشة   للـ SQL:
 
-#### 📸 لقطة شاشة أو ملف التوثيق الشامل للـ SQL:
-* يمكنك الإطلاع على ملف التوثيق الشامل المرفق أو اللقطات التالية:
+### 📄 Documentation & Reports
 
-![SQL Documentation Overview](images/sql_documentation_overview.png)
-
+| Doc 1 | Doc 2 | Doc 3 | Doc 4 | Doc 5 |
+| :---: | :---: | :---: | :---: | :---: |
+| ![Doc 1](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH.png) | ![Doc 2](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%201.png) | ![Doc 3](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%202.png) | ![Doc 4](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%203.png) | ![Doc 5](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%204.png) |
 
