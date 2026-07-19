@@ -72,8 +72,29 @@
 * **Document for Power BI Report:** عمل توثيق (**Documentation**) شامل لكل المعادلات والشغل المالي والإداري اللي اتعمل جوه الـ **Power BI**.
 
 ---
+## 🏗️ Phase 2: Architectural Pipeline & Engineering Design (تصميم وبناء خط سير البيانات)
 
-## 📸 Project Screenshots (صور لقطات الشاشة للمشروع)
+### 🚀 Choose Data Pipeline Approach (اختيار أسلوب نقل البيانات)
+لتأمين البيانات وضمان عدم التأثير على نظام التشغيل اليومي، تم اختيار أسلوب فصل الطبقات:
+$$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
-### ClickUp Workflow Board:
-![ClickUp Task Management](images/clickup_workflow.png)
+* **قاعدة البيانات الأساسية (DB):** قاعدة البيانات اللي فيها الـ Data خام (OLAP).
+* **منطقة الإنزال (Staging Area - SA):** بياخد الداتا من الـ DB وبيعمل لها ETL، ويحطها في Views جاهزة للشغل داخل الـ SQL Area.
+* **مستودع البيانات (DWH):** بتاخد الداتا من الـ Views جاهزة للشغل، ومسؤولة عن الـ VIS (التقارير والمؤشرات) وينبثق منها الـ Calculations والـ Documentations، بجانب الـ Documentation الخاص بالـ SQL Area.
+
+> 💡 **Load Methods (طرق تحميل البيانات):** 
+> * **Truncate & Insert**
+> * **Drop, Create, Insert**
+
+---
+
+### 🔍 Data Profiling & Table Consolidation (قراءة وفهم البيانات ودمج الجداول)
+
+#### 1. قراءة الداتا وفهم الجداول وما تحتويه:
+* لاحظنا إن الداتا مفصولة (**Separated**)، يعني فيه أكتر من جدول مهتمين بنفس الشيء، وهنا لازم نجمعهم في **Table واحد**.
+
+#### 2. خطة دمج وتجميع الجداول:
+* **👤 بيانات المشتركين والجغرافيا:** هناخد جدول `Customer` وجدول `Region` وجدول `Geography` ونجمع الـ 3 جداول في **جدول واحد**.
+* **📦 بيانات المنتجات:** هناخد جدول `Product` وجدول `Product Subcategory` ونجمعهم في **جدول واحد**.
+* **💰 بيانات المبيعات والتكاليف:** هناخد جدول `Sales Details` وجدول `Sales Header` وجدول `Product Cost History` ونجمع الـ 3 جداول في **جدول واحد**.
+
