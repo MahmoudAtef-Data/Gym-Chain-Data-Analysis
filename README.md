@@ -98,3 +98,88 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 * **📦 بيانات المنتجات:** هناخد جدول `Product` وجدول `Product Subcategory` ونجمعهم في **جدول واحد**.
 * **💰 بيانات المبيعات والتكاليف:** هناخد جدول `Sales Details` وجدول `Sales Header` وجدول `Product Cost History` ونجمع الـ 3 جداول في **جدول واحد**.
 
+
+
+### 📂 Design & Create Staging Area (تصميم وبناء منطقة الإنزال)
+
+#### 1. إنشاء الـ Staging Area:
+* تم إنشاء قاعدة البيانات باسم: `Heavy Power Nutrition Staging` لتكون المنطقة الوسيطة.
+
+#### 2. نقل الداتا من الـ OLAP إلى الـ SA:
+* **إنشاء الجداول:** تم إنشاء جداول فارغة جاهزة لاستقبال الداتا داخل الـ SA.
+* **Stored Procedures:** تم بناء وعمل *Stored Procedures* عشان تعمل نقل ذكي وديناميكي (**Dynamic**) للداتا من الـ OLAP إلى الـ SA.
+* **Load Method Approach:** يتم استخدام أسلوب الـ **Drop ⬅️ Create ⬅️ Insert**؛ وذلك لضمان منع حدوث أي تكرار في البيانات أثناء عملية النقل.
+
+---
+
+#### 📸 كود بناء الـ Staging Area:
+![Staging Area SQL Code](images/sa_sql_code.png)
+
+---
+
+#### 3. إنشاء الـ Views:
+* تم بناء وإنشاء الـ **Views** بحيث تحتوي على الـ **Denormalize Data**.
+* تم تطبيق عملية دمج الجداول المفصولة (**Separated**) إلى جداول موحدة (Table) بناءً على خطة الـ Denormalization.
+
+---
+
+#### 📸 صور الـ Denormalization والجداول المدمجة:
+| Customer Denormalization | Product Denormalization | Sales Denormalization |
+| :---: | :---: | :---: |
+| ![Customer View](images/customer_view.png) | ![Product View](images/product_view.png) | ![Sales View](images/sales_view.png) |
+
+
+
+### 🛠️ Data Cleaning & Overcoming Data Challenges (معالجة مشاكل البيانات)
+
+#### 1. مشكلة تكرار الخصم في جدول المبيعات (Sales Denormalization):
+* **المشكلة:** عند عمل `Denormalize` لجدول الـ `Sales Header` وجدول `Sales Details`، نلاحظ حدوث مشكلة عند حساب قيمة الـ `Sales Amount`؛ بسبب تكرار الـ `Discount Amount` بنفس القيمة على أكثر من Row لنفس المنتج.
+* **الحل:** للتغلب على هذه المشكلة نقوم بعمل **Allocation** لتوزيع الخصم بشكل صحيح وصحيح على مستوى السطور دون تكرار القيمة الإجمالية.
+
+---
+
+#### 📸 كود حل مشكلة الـ Discount Allocation:
+![Discount Allocation SQL Code](images/discount_allocation_code.png)
+
+---
+
+#### 2. التعامل مع جدول التكاليف (Product Cost History):
+* **الخطوة:** في جدول الـ `Product Cost History`، تم تحديد وفلترة الأعمدة المطلوبة فقط، حيث إننا بحاجة إلى عمود الـ `Unit Cost` بس.
+* **الآلية:** بيتم جلب الـ `Unit Cost` بناءً واعتماداً على الـ `Year` والـ `Month No` والـ `Country Code` والـ `Product Key`.
+
+---
+
+#### 📸 كود معالجة جدول الـ Product Cost History:
+![Product Cost SQL Code](images/product_cost_code.png)
+
+---
+
+### 🗄️ Design & Create Data Warehouse - DWH (بناء مستودع البيانات)
+
+#### 1. إنشاء جداول الـ DWH:
+* تم إنشاء 4 جداول فارغة بنفس أسماء وأعمدة وخصائص الـ 4 جداول اللي في الـ Views (الجداول المجهزة والمنظفة).
+
+---
+
+#### 📸 كود إنشاء جداول الـ DWH:
+![DWH Tables Creation Code](images/dwh_tables_creation.png)
+
+---
+
+#### 2. نقل البيانات من الـ SA Views إلى الـ DWH:
+* **آلية النقل:** بيتم نقل الداتا من الـ `Views` الخاصة بالـ Staging Area إلى جداول الـ `DWH` مباشرة.
+* **Load Method Approach:** الـ Approach اللي تم استخدامه في الـ Load Method لعملية الـ Movement هو أسلوب: **Truncate ⬅️ Insert**.
+
+---
+
+#### 📸 كود عملية نقل البيانات للـ DWH:
+![DWH Data Movement Code](images/dwh_data_movement.png)
+
+
+
+
+
+
+
+
+
