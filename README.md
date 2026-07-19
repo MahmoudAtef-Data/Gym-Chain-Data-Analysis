@@ -52,8 +52,7 @@
 * **Visualization:** تصميم الداشبورد والتقارير التفاعلية (**Dashboard**) لعرض المؤشرات بشكل بصري ممتاز.
 * **Document for Power BI Report:** عمل توثيق (**Documentation**) شامل لكل المعادلات والشغل المالي والإداري اللي اتعمل جوه الـ **Power BI**.
 
-![ClickUp Workflow](images/clickup_workflow.png)
-
+![](images/clickup_workflow.png)
 
 
 
