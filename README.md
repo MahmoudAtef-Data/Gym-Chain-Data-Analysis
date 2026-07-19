@@ -2,11 +2,17 @@
 
 ---
 
-## 📌 Phase 1: Foundation & Requirements Gathering (مرحلة التأسيس وجمع البيانات)
+## 📌 Phase 1: Foundation & Project Management (مرحلة التأسيس وإدارة المشروع)
+
+### 📊 Project Tracking via ClickUp (تتبع وإدارة المهام)
+* تم تخطيط وتقسيم جميع مراحل المشروع (من أول فهم المتطلبات وحتى بناء التقارير) باستخدام منصة **ClickUp** لضمان سير العمل بأسلوب **Agile** احترافي وتتبع الـ **Tasks** والـ **Subtasks** بدقة.
+
+> 📸 **Project Board Blueprint:**
+> ![ClickUp Task Management](https://images2.imgbox.com/71/e6/M6kE15m8_o.png)
 
 ### 🎯 Overview (نظرة عامة)
 * **Project Nature:** مشروع متكامل (End-to-End) بيربط بين مهام الـ **Data Engineer** والـ **Data Analyst** لإنشاء بنية تحتية قوية للبيانات.
-* **Business Domain:** المشروع مصمم خصيصاً لتحليل بيانات حقيقية لـ **Gym Chain** (سلسلة صالات رياضية).
+* **Business Domain:** المشروع مصمم خصيصاً لتحليل بيانات حقيقية لـ **Heavy Power Nutrition Gym Chain** (سلسلة صالات رياضية ومكملات غذائية).
 
 ### 👥 1. Understanding Business Requirements (فهم متطلبات العمل)
 * **الخطوة:** عمل اجتماع (**Meeting**) مباشر مع الـ **Business Owner**.
