@@ -179,7 +179,16 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 
 
+### 📝 SQL Work Documentation (توثيق عمليات قواعد البيانات)
 
+* **الخطوة:** تم عمل توثيق (**Documentation**) شامل ومفصل لكل ما تم من عمليات، وخطوات، وكتابة الـ Scripts أثناء مرحلة الـ ETL وبناء الـ Staging Area ومستودع البيانات (DWH) على الـ SQL.
+
+---
+
+#### 📸 لقطة شاشة أو ملف التوثيق الشامل للـ SQL:
+* يمكنك الإطلاع على ملف التوثيق الشامل المرفق أو اللقطات التالية:
+
+![SQL Documentation Overview](images/sql_documentation_overview.png)
 
 
 
