@@ -54,7 +54,7 @@
 
 | ClickUp Workflow |
 | :---: |
-| ![ClickUp](images/clickup_workflow.png.jpeg) |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/clickup_workflow.png.jpeg) |
 
 
 
@@ -63,6 +63,11 @@
 ### 🚀 Choose Data Pipeline Approach (اختيار أسلوب نقل البيانات)
 لتأمين البيانات وضمان عدم التأثير على نظام التشغيل اليومي، تم اختيار أسلوب فصل الطبقات:
 $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
+
+
+|Pipeline Architecture|
+| :---: |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Pipeline%20Architecture.png) |
 
 * **قاعدة البيانات الأساسية (DB):** قاعدة البيانات اللي فيها الـ Data خام (OLAP).
 * **منطقة الإنزال (Staging Area - SA):** بياخد الداتا من الـ DB وبيعمل لها ETL، ويحطها في Views جاهزة للشغل داخل الـ SQL Area.
@@ -82,11 +87,7 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 #### 2. خطة دمج وتجميع الجداول:
 * **👤 بيانات المشتركين والجغرافيا:** هناخد جدول `Customer` وجدول `Region` وجدول `Geography` ونجمع الـ 3 جداول في **جدول واحد**.
 * **📦 بيانات المنتجات:** هناخد جدول `Product` وجدول `Product Subcategory` ونجمعهم في **جدول واحد**.
-* **💰 بيانات المبيعات والتكاليف:** هناخد جدول `Sales Details` وجدول `
-*
-*
-*
-* Sales Header` وجدول `Product Cost History` ونجمع الـ 3 جداول في **جدول واحد**.
+* **💰 بيانات المبيعات والتكاليف:** هناخد جدول Sales Header` و جدول `Sales Details` وجدول ``Product Cost History` ونجمع الـ 3 جداول في **جدول واحد**.
 
 
 
@@ -109,8 +110,9 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 ---
 
-#### 📸 كود بناء الـ Staging Area:
-![Staging Area SQL Code](images/sa_sql_code.png)
+|SA SQL CODE|
+| :---: |
+| ![ClickUp](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/sa_sql_code.png) |
 
 ---
 
@@ -119,14 +121,11 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 * تم تطبيق عملية دمج الجداول المفصولة (**Separated**) إلى جداول موحدة (Table) بناءً على خطة الـ Denormalization.
 
 ---
+### 📊 Project Views Documentation
 
-#### 📸 صور الـ Denormalization والجداول المدمجة:
-| Customer Denormalization | Product Denormalization | Sales Denormalization |
-| :---: | :---: | :---: |
-| ![Customer View](images/customer_view.png) | ![Product View](images/product_view.png) | ![Sales View](images/sales_view.png) |
-
-
-
+| View Dim Customer | View Dim Product | View Dim Fact Sales | View Dim Fact Return |
+| :---: | :---: | :---: | :---: |
+| ![Customer](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/vwDimCustomer.png) | ![Product](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/vwDimproduct.png) | ![Sales](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/vwfSales.png) | ![Return](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/vwftReturns.png) |
 
 
 
