@@ -54,8 +54,7 @@
 
 | ClickUp Workflow |
 | :---: |
-| ![ClickUp](images/clickup_workflow.png) |
-
+| ![ClickUp](images/clickup_workflow.png.jpeg) |
 
 
 
