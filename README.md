@@ -197,3 +197,121 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 | :---: | :---: | :---: | :---: | :---: |
 | ![Doc 1](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH.png) | ![Doc 2](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%201.png) | ![Doc 3](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%202.png) | ![Doc 4](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%203.png) | ![Doc 5](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Full%20Architecture%20Overview%20%E2%80%94%20OLAP%20%E2%86%92%20SA%20%E2%86%92%20DWH%204.png) |
 
+
+
+
+
+
+
+### 📊 Get Data from DWH to Power BI (سحب الداتا من المخزن للباور بي آي)
+
+#### 1. الاتصال بالـ DWH:
+* تم عمل **Import Connection** بين الـ **Power BI** والـ **DWH** لسحب الجداول الأربعة النظيفة (Fact Sales, Fact Returns, Dim Customer, Dim Product).
+
+#### 2. بناء الـ Data Model:
+* تم عمل **Calendar Table** مخصص (Date Dimension) عشان يخدم كل الحسابات الزمنية (Year, Quarter, Month, MTD, YTD...).
+* تم بناء العلاقات (**Relationships**) بين جداول الحقائق وجداول الأبعاد بصيغة **Star Schema**.
+
+---
+
+| Data Model |
+| :---: |
+| ![Data Model](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DATA%20MODEL.jpg) |
+
+---
+
+### 🛠️ Integrate Between Git, VS & Power BI (الربط بين أدوات التحكم والمطورين)
+
+* تم حفظ ملف الباور بي آي بصيغة **.pbip** بدل الصيغة التقليدية **.pbix**، عشان يتوافق مع نظام الـ **Version Control**.
+* تم تجهيز بيئة العمل على **Visual Studio**، وتشغيل **Git** داخل الفولدر لمتابعة كل تعديل بيتم على الملفات (DAX Measures, Model Relationships, Report Layout).
+* الربط ده بيسمح بعمل **Commits** واضحة لكل تغيير، وده بيسهّل الرجوع لأي نسخة سابقة من المشروع.
+
+
+### 🎨 Calculations, Visualization & Documentation (الحسابات، الداشبورد والتوثيق)
+
+#### 1. DAX Measures & Calculations:
+* تم بناء مجموعة من الـ **Measures** الأساسية والمتقدمة، منها:
+  * **Total Net Sales**, **Total Cost**, **Gross Profit**, **Profit Margin %**
+  * مقاييس زمنية: **YTD Sales**, **MTD Sales**, **Sales Growth % (YoY)**
+  * مقاييس تحليلية: **AOV (Average Order Value)**, **CAC (Customer Acquisition Cost)**
+
+---
+
+| DAX Measures |
+| :---: |
+
+| ![DAX 1](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DAX%201.jpeg) | ![DAX 2](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DAX%202.jpeg) | ![DAX 3](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DAX%203.jpeg) | ![DAX 4](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DAX%204.jpeg) | ![DAX 5](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DAX%205.jpeg) |
+---
+
+#### 2. Dashboard Design (تصميم الداشبورد):
+* تم تصميم داشبورد تفاعلي بيغطي أربع محاور رئيسية: **Costs Overview, Sales Performance, Product Movement, Geographic Distribution**.
+* تم استخدام **Slicers, Bookmarks, Tooltips** عشان تجربة مستخدم أفضل لصانع القرار.
+
+---
+
+| Dashboard Overview |
+| :---: |
+
+
+| ![REVENUE](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/REVENUE.png) | ![CUSTOMER](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/CUSTOMER.png) | ![PRODUCT](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/PRODUCT.png) | ![TIME](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/TIME.png) | ![RETURN](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/RETURNS.png) | ![DETAILS](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/DETAILS.png) |
+---
+
+#### 3. Power BI Work Documentation:
+* تم عمل توثيق شامل لكل الـ **DAX Measures** ومنطق كل حساب، بالإضافة لتوثيق العلاقات في الـ **Data Model**.
+
+---
+
+| Power BI Documentation |
+| :---: |
+| ![Power BI Doc]() |
+
+---
+
+## 💡 Phase 4: Key Business Insights & Recommendations (أهم النتائج والتوصيات)
+
+| المشكلة المكتشفة | الأثر على العمل والتجارة | الحل المقترح والموصى به |
+|---|---|---|
+| ارتفاع التكاليف التشغيلية (Costs) | تقليص صافي الأرباح وعرقلة النمو رغم زيادة حجم المبيعات الإجمالي | مراجعة العقود اللوجستية والاعتماد على الأتمتة لخفض المصاريف الثابتة والمتغيرة |
+| ركود بعض المنتجات (No Sales) | تجميد السيولة النقدية وتكدس المخازن وتعرض المنتجات للتلف | إطلاق حملات تصفية سريعة، والاعتماد على نظام Just-In-Time في الشراء والتصنيع المستقبلي |
+| انخفاض متوسط الفاتورة (AOV) | ضعف الاستفادة القصوى من العميل الحالي وارتفاع تكلفة الاستحواذ (CAC) | وضع حوافز شرائية مثل الشحن المجاني المشروط أو الخصومات التراكمية الذكية |
+| تركز المبيعات جغرافيًا (Revenue) | مخاطرة عالية للغاية في حال تأثر أو ركود هذه الأسواق الرئيسية | توسيع الخطة التسويقية واستهداف المناطق الواعدة التي أظهرت المؤشرات ضعف التواجد فيها حاليًا |
+
+---
+
+## 🧰 Tech Stack
+
+| Category | Tools |
+|---|---|
+| Database & ETL | SQL Server, T-SQL, Stored Procedures |
+| Data Warehousing | Star Schema Design (Fact & Dimension Tables) |
+| BI & Visualization | Power BI Desktop, DAX |
+| Version Control | Git, GitHub, Visual Studio (.pbip) |
+| Project Management | ClickUp |
+
+---
+
+## 📬 Contact
+
+**Mahmoud Atef**
+Data Analyst | BI Developer | DAX | SQL | ETL | Python
+
+* GitHub: [MahmoudAtef-Data](https://github.com/MahmoudAtef-Data)
+* LinkedIn: *[ضيف رابط البروفايل بتاعك هنا]*
+
+⭐ لو المشروع عجبك، متنساش تدي Star للريبو!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
