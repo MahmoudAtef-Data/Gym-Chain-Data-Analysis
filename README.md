@@ -263,7 +263,7 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 
 | Power BI Documentation |
 | :---: |
-| ![Power BI Doc]() |
+| ![Power BI Doc](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Power%20BI%20Documentation(ENGHLISH).pdf) | ![Power BI Doc (ARABIC)](https://github.com/MahmoudAtef-Data/Gym-Chain-Data-Analysis/blob/main/Power%20BI%20Documentation.pdf)
 
 ---
 
@@ -296,7 +296,7 @@ $$\text{DB} \longrightarrow \text{Staging Area} \longrightarrow \text{DWH}$$
 Data Analyst | BI Developer | DAX | SQL | ETL | Python
 
 * GitHub: [MahmoudAtef-Data](https://github.com/MahmoudAtef-Data)
-* LinkedIn: *[ضيف رابط البروفايل بتاعك هنا]*
+* LinkedIn: *[www.linkedin.com/in/mahmoudatefda]*
 
 ⭐ لو المشروع عجبك، متنساش تدي Star للريبو!
 
